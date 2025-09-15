@@ -1,5 +1,13 @@
 ---
-
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import UIShowcase from '../components/UIShowcase.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
 ---
 
 <html lang="en">
@@ -8,9 +16,55 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Portfolio - Full Stack Developer</title>
+		<meta name="description" content="Portfolio of a passionate full-stack developer creating beautiful, functional, and user-friendly web experiences." />
+		<meta name="keywords" content="portfolio, developer, full-stack, web development, react, node.js, javascript" />
+		<meta name="author" content="Your Name" />
+		
+		<!-- Open Graph Meta Tags -->
+		<meta property="og:title" content="Portfolio - Full Stack Developer" />
+		<meta property="og:description" content="Portfolio of a passionate full-stack developer creating beautiful, functional, and user-friendly web experiences." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://yourportfolio.com" />
+		
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Portfolio - Full Stack Developer" />
+		<meta name="twitter:description" content="Portfolio of a passionate full-stack developer creating beautiful, functional, and user-friendly web experiences." />
+		
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#3b82f6" />
+		
+		<!-- Preload Critical Resources -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		
+		<!-- Import Global Styles -->
+		<link rel="stylesheet" href="/src/styles/globals.css" />
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="antialiased">
+		<!-- Navigation -->
+		<Navigation />
+		
+		<!-- Hero Section -->
+		<Hero />
+		
+		<!-- About Section -->
+		<About />
+		
+		<!-- Skills Section -->
+		<Skills />
+		
+		<!-- Projects Section -->
+		<Projects />
+		
+		<!-- UI Showcase Section -->
+		<UIShowcase />
+		
+		<!-- Contact Section -->
+		<Contact />
+		
+		<!-- Footer -->
+		<Footer />
 	</body>
 </html>
