@@ -1,0 +1,162 @@
+---
+import { cn } from '@lib/utils';
+import { Image } from 'astro:assets';
+import defaultCoverImage from '@images/blog_thumbnail_image.jpg';
+
+export interface Props {
+  class?: string;
+}
+
+type Blog = {
+    title: string;
+    description: string;
+    published_at: string;
+    url: string;
+    cover_image: string | null;
+    reading_time_minutes: number;
+    user: {
+        name: string;
+        profile_image_90: string | null;
+    };
+}
+
+const { class: className, ...rest } = Astro.props;
+
+const response = await fetch("https://dev.to/api/articles/me?page=1&per_page=12", {
+    method: "GET",
+    headers: {
+        "api-key": import.meta.env.DEV_TO_API_KEY
+    }
+});
+
+if (!response.ok) {
+    throw new Error(`Failed to fetch blogs: ${response.status} ${response.statusText}`);
+}
+
+const data = await response.json();
+
+if (!Array.isArray(data)) {
+    throw new Error('Expected array of blogs, but received: ' + typeof data);
+}
+
+function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        return dateString;
+    }
+    return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }).format(date);
+}
+
+---
+
+<section id="blogs" class={cn("py-20 bg-gray-50 dark:bg-gray-800", className)} {...rest}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Latest Articles
+                </span>
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Insights, tutorials, and thoughts on web development
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                data.map((blog: Blog) => {
+                    return (
+                        <article class="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-purple-600">
+                                {blog.cover_image ? (
+                                    <Image 
+                                        src={blog.cover_image} 
+                                        alt={blog.title}
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={1920}
+                                        height={1278}
+                                    />
+                                ) : (
+                                    <Image 
+                                        src={defaultCoverImage} 
+                                        alt={blog.title}
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={1920}
+                                        height={1278}
+                                    />
+                                )}
+                            </div>
+                            
+                            <div class="p-6 flex-1 flex flex-col">
+                                <div class="flex items-center mb-4">
+                                    {blog.user.profile_image_90 && (
+                                        <Image
+                                            src={blog.user.profile_image_90} 
+                                            alt={blog.user.name}
+                                            class="w-10 h-10 rounded-full mr-3 object-cover"
+                                            loading="lazy"
+                                            decoding="async"
+                                            width={100}
+                                            height={100}
+                                        />
+                                    )}
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                            {blog.user.name}
+                                        </p>
+                                        <div class="flex items-center gap-3 mt-1">
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">
+                                                {formatDate(blog.published_at)}
+                                            </span>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">
+                                                • {blog.reading_time_minutes} min read
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    {blog.title}
+                                </h3>
+                                
+                                <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 flex-1">
+                                    {blog.description}
+                                </p>
+
+                                <a 
+                                    href={blog.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg mt-auto"
+                                >
+                                    <span>Read Article</span>
+                                    <svg
+                                        class="w-4 h-4 ml-2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </article>
+                    )
+                })
+            }
+        </div>
+    </div>
+</section>

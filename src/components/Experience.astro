@@ -1,0 +1,53 @@
+---
+import { cn } from "@lib/utils";
+
+export interface Props {
+  class?: string;
+}
+
+const { class: className, ...rest } = Astro.props;
+
+const keyInsights = [
+  "Led the migration of legacy frontend applications to Next.js, significantly improving performance, SEO, accessibility, and overall developer experience.",
+  "Designed and developed a scalable headless CMS using Next.js, Payload CMS, and PostgreSQL, reducing page publishing time by ~80% and accelerating content delivery across teams.",
+  "Built advanced CMS capabilities including live preview, draft mode, content versioning, reusable content blocks, rich text editing, SEO metadata management, and media uploads (GCP)",
+  "Architected a multi-brand CMS setup using a monorepo, improving code reuse, maintainability, and onboarding speed for new brands.",
+  "Implemented a comprehensive Playwright automation suite covering E2E flows, API testing, UI and snapshot tests, accessibility checks, link validation, and authentication workflows.",
+  "Collaborated closely with backend, QA, and product teams to own frontend delivery and improve product stability and release confidence.",
+  "Performed database schema and data migrations in coordination with Payload CMS and PostgreSQL.",
+  "Maintained and enhanced legacy JSP applications, contributing to gradual modernization without disrupting production systems.",
+];
+---
+
+<section
+  id="about"
+  class={cn("py-20 bg-white dark:bg-gray-900", className)}
+  {...rest}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span
+          class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+        >
+          Work Experience
+        </span>
+      </h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        <span>FullCreative</span> | <span class="font-bold"
+          >Frontend Engineer</span
+        >
+        <span class="text-gray-500">| Jan 2023 - Present</span>
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        keyInsights.map((insight) => (
+          <div class="bg-gray-900 text-gray-300 rounded-tr-xl rounded-bl-xl p-6 shadow hover:scale-105 transition-scale duration-300 shadow-violet-400">
+            <p>{insight}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

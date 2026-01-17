@@ -1,5 +1,8 @@
 ---
-import { cn } from '../lib/utils';
+import heroProfile from '@images/hero-profile.webp';
+import { Image } from 'astro:assets';
+import { cn } from '@lib/utils';
+import ResumePdf from "@public/Shubham_resume_2026.pdf"
 
 export interface Props {
   class?: string;
@@ -61,13 +64,14 @@ const socialLinks = [
       <div class="mb-8">
         <div class="relative inline-block">
           <div class="size-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1">
-            <img 
-              src="/hero-profile.webp" 
+            <Image 
+              src={heroProfile}
               alt="Shubham Profile Picture" 
               class="w-full h-full rounded-full object-cover"
               loading="lazy"
               width={128}
               height={128}
+              decoding="async"
             />
           </div>
           <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
@@ -80,13 +84,13 @@ const socialLinks = [
       
       <!-- Main Content -->
       <div class="animate-slide-up">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        <h1 class="text-3xl md:text-7xl font-bold mb-6">
           <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             Hi, I'm Shubham Tiwari
           </span>
           <br>
           <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
-            Jr. Frontend Engineer
+            Frontend Engineer
           </span>
         </h1>
         
@@ -104,8 +108,9 @@ const socialLinks = [
             <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
           
-          <a href="#contact" class="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-full hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300">
-            Get In Touch
+          <a href={ResumePdf} download="Shubham_resume_2026.pdf" class="group relative bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white font-semibold rounded-full transform hover:-translate-y-1 transition-all duration-300">
+            <span class="relative z-10">Download Resume</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
         </div>
         

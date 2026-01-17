@@ -1,13 +1,15 @@
 ---
-import Navigation from '../components/Navigation.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Skills from '../components/Skills.astro';
+import Navigation from '@components/Navigation.astro';
+import Hero from '@components/Hero.astro';
+import About from '@components/About.astro';
+import Skills from '@components/Skills.astro';
 import Projects from '../components/Projects.astro';
-import UIShowcase from '../components/UIShowcase.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/globals.css';
+import UIShowcase from '@components/UIShowcase.astro';
+import Contact from '@components/Contact.astro';
+import Footer from '@components/Footer.astro';
+import Blogs from '@components/Blogs.astro';
+import Experience from '@components/Experience.astro';
+import '@styles/globals.css';
 ---
 
 <html lang="en">
@@ -54,12 +56,18 @@ import '../styles/globals.css';
 		
 		<!-- Skills Section -->
 		<Skills />
+
+		<!-- Experience Section -->
+		<Experience />
 		
 		<!-- Projects Section -->
 		<Projects />
 		
 		<!-- UI Showcase Section -->
 		<UIShowcase />
+
+		<!-- Blogs Section -->
+		<Blogs />
 		
 		<!-- Contact Section -->
 		<Contact />
