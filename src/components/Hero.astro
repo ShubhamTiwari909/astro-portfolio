@@ -40,9 +40,10 @@ const socialLinks = [
     hoverClass: 'hover:bg-pink-100 dark:hover:bg-pink-900'
   }
 ];
+
 ---
 
-<section id="home" class={cn("min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-10", className)} {...rest}>
+<section id="home" data-theme="dark" class={cn("min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-10", className)} {...rest}>
   <!-- Background Elements -->
   <div class="absolute inset-0 overflow-hidden">
     <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
@@ -108,7 +109,7 @@ const socialLinks = [
             <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
           
-          <a href={ResumePdf} download="Shubham_resume_2026.pdf" class="group relative bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white font-semibold rounded-full transform hover:-translate-y-1 transition-all duration-300">
+          <a href={ResumePdf} download="Shubham_resume_2026.pdf" class="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
             <span class="relative z-10">Download Resume</span>
             <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
