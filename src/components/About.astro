@@ -1,5 +1,5 @@
 ---
-import { cn } from '@lib/utils';
+import { cn } from "@lib/utils";
 
 export interface Props {
   class?: string;
@@ -8,51 +8,57 @@ export interface Props {
 const { class: className, ...rest } = Astro.props;
 
 const skills = [
-  { name: 'Full-Stack Development', color: 'bg-blue-500' },
-  { name: 'UI/UX Design', color: 'bg-purple-500' },
-  { name: 'SEO', color: 'bg-pink-500' },
-  { name: 'Performance Optimization', color: 'bg-green-500' },
-  { name: 'Accessibility', color: 'bg-yellow-500' }
+  { name: "Full-Stack Development", color: "bg-blue-500" },
+  { name: "UI/UX Design", color: "bg-purple-500" },
+  { name: "SEO", color: "bg-pink-500" },
+  { name: "Performance Optimization", color: "bg-green-500" },
+  { name: "Accessibility", color: "bg-yellow-500" },
 ];
 
 const stats = [
-  { 
-    number: '3+', 
-    label: 'Years Experience', 
-    bgGradient: 'from-blue-50 to-blue-100', 
-    textColor: 'text-blue-600 dark:text-blue-400' 
+  {
+    number: "3+",
+    label: "Years Experience",
+    bgGradient: "from-blue-50 to-blue-100",
+    textColor: "text-blue-600 dark:text-blue-400",
   },
-  { 
-    number: '15+', 
-    label: 'Projects Completed', 
-    bgGradient: 'from-purple-50 to-purple-100', 
-    textColor: 'text-purple-600 dark:text-purple-400' 
+  {
+    number: "15+",
+    label: "Projects Completed",
+    bgGradient: "from-purple-50 to-purple-100",
+    textColor: "text-purple-600 dark:text-purple-400",
   },
-  { 
-    number: '10+', 
-    label: 'Technologies Mastered', 
-    bgGradient: 'from-pink-50 to-pink-100', 
-    textColor: 'text-pink-600 dark:text-pink-400' 
+  {
+    number: "10+",
+    label: "Technologies Mastered",
+    bgGradient: "from-pink-50 to-pink-100",
+    textColor: "text-pink-600 dark:text-pink-400",
   },
-  { 
-    number: '100%', 
-    label: 'Team Player', 
-    bgGradient: 'from-green-50 to-green-100', 
-    textColor: 'text-green-600 dark:text-green-400' 
-  }
+  {
+    number: "100%",
+    label: "Team Player",
+    bgGradient: "from-green-50 to-green-100",
+    textColor: "text-green-600 dark:text-green-400",
+  },
 ];
 
 const descriptions = [
   "I'm a passionate Frontend Engineer with over 3 years of experience creating beautiful, functional, and user-friendly web applications. I love turning complex problems into simple, elegant solutions.",
   "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. I believe in continuous learning and staying up-to-date with the latest trends in web development.",
-]
+];
 ---
 
-<section id="about" class={cn("py-20 bg-white dark:bg-gray-900", className)} {...rest}>
+<section
+  id="about"
+  class={cn("py-20 bg-white dark:bg-gray-900", className)}
+  {...rest}
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10 lg:mb-16">
       <h2 class="text-4xl md:text-5xl font-bold mb-4">
-        <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <span
+          class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+        >
           About Me
         </span>
       </h2>
@@ -60,35 +66,57 @@ const descriptions = [
         Passionate about creating digital experiences that matter
       </p>
     </div>
-    
+
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Content -->
-      <div class="space-y-6">
+      <div class="space-y-6" id="about-description">
         {
-          descriptions.map(description => (
-            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
+          descriptions.map((description) => (
+            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              {description}
+            </p>
           ))
         }
-        
+
         <div class="flex flex-wrap gap-4">
-          {skills.map(skill => (
-            <div class="flex items-center space-x-2">
-              <div class={`w-2 h-2 ${skill.color} rounded-full`}></div>
-              <span class="text-gray-600 dark:text-gray-300">{skill.name}</span>
-            </div>
-          ))}
+          {
+            skills.map((skill) => (
+              <div class="flex items-center space-x-2">
+                <div class={`w-2 h-2 ${skill.color} rounded-full`} />
+                <span class="text-gray-600 dark:text-gray-300">
+                  {skill.name}
+                </span>
+              </div>
+            ))
+          }
         </div>
       </div>
-      
+
       <!-- Stats -->
       <div class="grid grid-cols-2 gap-6">
-        {stats.map(stat => (
-          <div class={`text-center p-6 bg-gradient-to-br ${stat.bgGradient} dark:from-gray-800 dark:to-gray-700 rounded-xl`}>
-            <div class={`text-3xl font-bold ${stat.textColor} mb-2`}>{stat.number}</div>
-            <div class="text-gray-600 dark:text-gray-300">{stat.label}</div>
-          </div>
-        ))}
+        {
+          stats.map((stat) => (
+            <div
+              class={`text-center p-6 bg-gradient-to-br ${stat.bgGradient} dark:from-gray-800 dark:to-gray-700 rounded-xl stat`}
+            >
+              <div class={`text-3xl font-bold ${stat.textColor} mb-2`}>
+                {stat.number}
+              </div>
+              <div class="text-gray-600 dark:text-gray-300">{stat.label}</div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { animate, inView, stagger } from "motion";
+  inView("#about-description", (element) => {
+    animate(element, { opacity: [0, 1] }, { duration: 0.5, ease: "easeInOut", delay: 0.5, delayChildren: stagger(0.5) });
+  }, { margin: "0px 40px 0px 0px" });
+  inView(".stat", (element) => {
+    animate(element, { opacity: [0, 1], scale: [0, 1] }, { duration: 0.5, ease: "easeInOut", delay: 0.5, delayChildren: stagger(0.5) });
+  }, { margin: "0px 40px 0px 0px" });
+</script>

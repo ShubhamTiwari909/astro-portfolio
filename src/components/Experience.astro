@@ -43,11 +43,21 @@ const keyInsights = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         keyInsights.map((insight) => (
-          <div class="bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300 rounded-tr-xl rounded-bl-xl p-6 shadow hover:scale-105 transition-scale duration-300 shadow-violet-400">
-            <p>{insight}</p>
+          <div class="group relative bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 dark:border-slate-700 hover:border-violet-400 dark:hover:border-violet-500 overflow-hidden key-insight">
+            <div class="absolute inset-0 bg-gradient-to-br from-violet-50 via-transparent to-blue-50 dark:from-violet-900/10 dark:via-transparent dark:to-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative z-10">
+              <p class="leading-relaxed">{insight}</p>
+            </div>
           </div>
         ))
       }
     </div>
   </div>
 </section>
+
+<script>
+  import { animate, inView, stagger } from "motion";
+  inView(".key-insight", (element) => {
+    animate(element, { opacity: [0, 1], scale: [0, 1] }, { duration: 0.5, ease: "easeInOut", delay: 0.25, delayChildren: stagger(0.5) });
+  }, { margin: "0px 40px 0px 0px" });
+</script>
